@@ -130,6 +130,8 @@ GMail.Client.prototype.get = Meteor.wrapAsync(function (id, cb) {
   var self = this;
   self._ensureToken();
   var urlBase = "https://www.googleapis.com/gmail/v1/users/me/messages/";
+
+  increaseFacts();
   HTTP.get(urlBase + id, { params: {
     'access_token': self.credentials.accessToken
   } }, function (err, res) {
@@ -194,6 +196,7 @@ GMail.Client.prototype._accum =
   while (pageToken !== null) {
     try {
       self._ensureToken();
+      increaseFacts();
       var r = HTTP.get(url, { params: _.extend({
         'access_token': self.credentials.accessToken,
         'pageToken': pageToken
@@ -210,4 +213,9 @@ GMail.Client.prototype._accum =
 
   cb(null, items);
 });
+
+var increaseFacts = function () {
+  Package.facts && Package.facts.Facts.incrementServerFact(
+    "slava:gmail", "api-calls-issued", 1);
+};
 

@@ -8,6 +8,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('METEOR@0.9.3');
   api.use(['underscore', 'http'], 'server');
+  api.use(['facts'], 'server', {weak: true});
   api.addFiles(['gmail.js', 'poller.js', 'listener.js'], 'server');
   api.export('GMail');
 });
