@@ -9,7 +9,7 @@ if (Meteor.isServer) {
 
       gmailClients[doc._id] = new GMail.Client({
         clientId: googleConf.clientId,
-        clientSecret: googleConf.clientSecret,
+        clientSecret: googleConf.secret,
         accessToken: google.accessToken,
         expirationDate: google.expiresAt,
         refreshToken: google.refreshToken

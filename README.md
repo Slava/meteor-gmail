@@ -52,7 +52,7 @@ var google = user.services.google;
 
 var client = new GMail.Client({
   clientId: googleConf.clientId,
-  clientSecret: googleConf.clientSecret,
+  clientSecret: googleConf.secret,
   accessToken: google.accessToken,
   expirationDate: google.expiresAt,
   refreshToken: google.refreshToken
