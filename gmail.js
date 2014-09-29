@@ -99,9 +99,9 @@ GMail.Client.prototype._ensureToken = function () {
       });
 
       // update the access token value and the expiration date
-      self.client.credentials.accessToken = r.data.accessToken;
-      self.client.credentials.expirationDate =
-        new Date((new Date) + r.data.expiresIn * 1000);
+      self.credentials.accessToken = r.data.access_token;
+      self.credentials.expirationDate =
+        new Date((new Date) + r.data.expires_in * 1000);
     } catch (err) {
       // got an error :(
       // throw this error further everywhere!
