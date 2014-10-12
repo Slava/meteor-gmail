@@ -21,20 +21,10 @@ if (Meteor.isServer) {
     }
   });
 } else {
-  Template.body.events({
-    'click button': function () {
-      Meteor.loginWithGoogle({
-        requestOfflineToken: true,
-        forceApprovalPrompt: true,
-        requestPermissions: ["https://www.googleapis.com/auth/gmail.readonly"]
-      });
-    }
-  });
-
-  Template.body.helpers({
-    haveConf: function () {
-      return !!ServiceConfiguration.configurations.findOne({service: 'google'});
-    }
+  Accounts.ui.config({
+    requestOfflineToken: { google: true },
+    forceApprovalPrompt: { google: true },
+    requestPermissions: { google: ["https://www.googleapis.com/auth/gmail.readonly"] }
   });
 }
 
