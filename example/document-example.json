@@ -1,0 +1,82 @@
+{
+  "id":"13f657cd1fe34cb5",
+  "threadId":"13f657cd1fe34cb5",
+  "labelIds":["IMPORTANT", "CATEGORY_SOCIAL"],
+  "snippet":"Check out the latest video from your channel subscriptions for Jun 21, 2013. Liquid Labs: $ Meteor",
+  "historyId":"310271",
+  "payload":{
+    "mimeType":"multipart/alternative",
+    "filename":"",
+    "headers":[{
+      "name":"Delivered-To",
+      "value":"slava@meteor.com"
+    }, {
+      "name":"Received",
+      "value":"by 10.70.12.5 with SMTP id u5csp72977pdb;        Thu, 20 Jun 2013 23:47:26 -0700 (PDT)"
+    }, {
+      "name":"X-Received",
+      "value":"by 10.60.83.73 with SMTP id o9mr5634356oey.137.1371797246186;        Thu, 20 Jun 2013 23:47:26 -0700 (PDT)"
+    }, {
+      "name":"Return-Path",
+      "value":"<3_fbDUQcLBY4569w73GG6CBCtw.u64A3sDs4wBw69.u64@youtube-subscriptions.bounces.google.com>"
+    }, {
+      "name":"Received",
+      "value":"from mail-ob0-x246.google.com (mail-ob0-x246.google.com [2607:f8b0:4003:c01::246])        by mx.google.com with ESMTPS id rx5si1444960obb.103.2013.06.20.23.47.25        for <slava@meteor.com>        (version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);        Thu, 20 Jun 2013 23:47:26 -0700 (PDT)"
+    }, {
+      "name":"Received-SPF",
+      "value":"pass (google.com: domain of 3_fbDUQcLBY4569w73GG6CBCtw.u64A3sDs4wBw69.u64@youtube-subscriptions.bounces.google.com designates 2607:f8b0:4003:c01::246 as permitted sender) client-ip=2607:f8b0:4003:c01::246;"
+    }, {
+      "name":"Authentication-Results",
+      "value":"mx.google.com;       spf=pass (google.com: domain of 3_fbDUQcLBY4569w73GG6CBCtw.u64A3sDs4wBw69.u64@youtube-subscriptions.bounces.google.com designates 2607:f8b0:4003:c01::246 as permitted sender) smtp.mail=3_fbDUQcLBY4569w73GG6CBCtw.u64A3sDs4wBw69.u64@youtube-subscriptions.bounces.google.com;       dkim=pass header.i=@youtube.com;       dmarc=pass (p=QUARANTINE dis=NONE) d=youtube.com"
+    }, {
+      "name":"Received",
+      "value":"by mail-ob0-f198.google.com with SMTP id up14so34428286obb.5        for <slava@meteor.com>; Thu, 20 Jun 2013 23:47:25 -0700 (PDT)"
+    }, {
+      "name":"DKIM-Signature",
+      "value":"v=1; a=rsa-sha256; c=relaxed/relaxed;        d=youtube.com; s=20120806;        h=mime-version:list-unsubscribe:message-id:date:subject:from:to         :content-type;        bh=5vS+nJNx1/b0x/VLmsFBSgopWRCVysujfFh6yLL/Bh4=;        b=F4f9bQKwyoo24RptqdVeso5O2Qc0QL+YrQAaXaLHhuW0bAZ3KhOm5uN2ByISXTvIt7         peOEfPsbAO00igmwmXeGDIuOLycFRCloEiDlkYmDN0Gx/o1pyGy5Y14xR7A11zF2XXMl         tdBpy50V76iGzQquEzKgrWKkx58nZOl1VLnDOnvsiJ7XVwPOm88YZ8ruKBEGiskQBMKd         lDOQPZIq2OWVuVGNAfMVqcY7Yopl4NLfmoM0lIZW+ntoYsRZiQFcWmFltKPJGlMKtCyc         9FMS+Vm5C0eSiO1Cy/D6z+2WHFvy9QLgQEuThyBbFhlu7oek5tB11+LhUno4Ov2KlAvb         17ew=="
+    }, {
+      "name":"MIME-Version",
+      "value":"1.0"
+    }, {
+      "name":"X-Received",
+      "value":"by 10.42.108.70 with SMTP id g6mr8542393icp.7.1371797245782; Thu, 20 Jun 2013 23:47:25 -0700 (PDT)"
+    }, {
+      "name":"List-Unsubscribe",
+      "value":"<http://www.youtube.com/email_unsubscribe?uid=hh4c3vKL01J6ps81bPZCtQ&action_unsubscribe=MPN0SzrRsdzv3UENs8xv9UDJtkB8MTM3MTc5NzI0NUAxMzcxNzk3MjQ1&feature=em-subs_digest>"
+    }, {
+      "name":"Message-ID",
+      "value":"<485b397dd15d89ea4f04dfa46fa9@google.com>"
+    }, {
+      "name":"Date",
+      "value":"Fri, 21 Jun 2013 06:47:25 +0000"
+    }, {
+      "name":"Subject",
+      "value":"\"Liquid Labs: $ Meteor create perfectFirstDate - Devshop 4\" from MeteorVideos"
+    }, {
+      "name":"From",
+      "value":"YouTube <noreply@youtube.com>"
+    }, {
+      "name":"To",
+      "value":"slava@meteor.com"
+    }, {
+      "name":"Content-Type",
+      "value":"multipart/alternative; boundary=485b397dd15d89ea4204dfa46fa6"}],
+      "body":{
+        "size":0
+      },
+      "parts":[{
+        "partId":"0",
+        "mimeType":"text/plain",
+        "filename":"",
+        "headers":[{
+          "name":"Content-Type",
+          "value":"text/plain; charset=ISO-8859-1; format=flowed; delsp=yes"}],
+          "body":{
+            "size":1423,
+            "data":"..."
+          }
+      }]
+  },
+  "sizeEstimate":29641
+}
+
