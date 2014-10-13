@@ -9,6 +9,10 @@
       "1.1.1"
     ],
     [
+      "slava:gmail-query-parser",
+      "1.0.0"
+    ],
+    [
       "underscore",
       "1.0.0"
     ],

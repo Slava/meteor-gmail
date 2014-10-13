@@ -1,6 +1,7 @@
 GMail.Listener = function (client, query, startHistoryId, cb) {
   this.client = client;
   this.query = query;
+  this.matcher = new GMailQuery.Matcher(query);
   this.startHistoryId = startHistoryId || 0;
   this.callback = cb;
 
@@ -21,9 +22,9 @@ GMail.Listener.prototype.handleNewMessage = function (doc, historyId) {
   if (historyId <= self.startHistoryId)
     return;
 
-  // XXX implement filtering:
-  // if (! Matches(query, doc)) return;
+  var message = new GMail.Message(doc);
+  if (! self.matcher.matches(doc)) return;
 
-  self.callback(doc, historyId);
+  self.callback(message, historyId, doc);
 };
 

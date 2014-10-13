@@ -8,8 +8,14 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('METEOR@0.9.3');
   api.use(['underscore', 'http'], 'server');
+  api.use('slava:gmail-query-parser', 'server');
   api.use(['facts'], 'server', {weak: true});
-  api.addFiles(['gmail.js', 'poller.js', 'listener.js'], 'server');
+  api.addFiles([
+    'gmail.js',
+    'poller.js',
+    'listener.js',
+    'message.js'], 'server');
+
   api.export('GMail');
 });
 

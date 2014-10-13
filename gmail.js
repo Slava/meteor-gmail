@@ -35,7 +35,7 @@ GMail.Client = function (credentials) {
 
 /**
  * @summary registers a callback for every new email matching query
- * @param {Object} query - a structured query using GMail query syntax:
+ * @param {String} query - a query using GMail query syntax:
  * https://support.google.com/mail/answer/7190?hl=en. Trashed and Spam emails
  * are ignored by default.
  * @param {String} [startHistoryId] - the historyId of the last message in
@@ -46,9 +46,6 @@ GMail.Client = function (credentials) {
  */
 GMail.Client.prototype.onNewEmail = function (query, startHistoryId, cb) {
   var self = this;
-  // XXX query is ignored right now, in the future it should be implemented as a
-  // separate JS package with the filtering logic identical to GMail's.
-
   // 'starthistoryid' is optional
   if (typeof startHistoryId === 'function') {
     cb = startHistoryId;
@@ -149,9 +146,6 @@ GMail.Client.prototype.list = Meteor.wrapAsync(function (query, params, cb) {
 
   var self = this;
   self._ensureToken();
-
-  // XXX convert query from obj to string
-  // query = MatcherToString(query)
 
   var urlBase = "https://www.googleapis.com/gmail/v1/users/me/messages";
 
