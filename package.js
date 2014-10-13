@@ -8,7 +8,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('METEOR@0.9.3');
   api.use(['underscore', 'http'], 'server');
-  api.use('slava:gmail-query-parser', 'server');
+  api.use('slava:gmail-query-parser@1.1.0', 'server');
   api.use(['facts'], 'server', {weak: true});
   api.addFiles([
     'gmail.js',
