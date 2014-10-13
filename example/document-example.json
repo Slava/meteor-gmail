@@ -70,11 +70,12 @@
         "filename":"",
         "headers":[{
           "name":"Content-Type",
-          "value":"text/plain; charset=ISO-8859-1; format=flowed; delsp=yes"}],
-          "body":{
-            "size":1423,
-            "data":"..."
-          }
+          "value":"text/plain; charset=ISO-8859-1; format=flowed; delsp=yes"
+        }],
+        "body":{
+          "size":1423,
+          "data":"..."
+        }
       }]
   },
   "sizeEstimate":29641

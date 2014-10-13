@@ -15,8 +15,10 @@ if (Meteor.isServer) {
         refreshToken: google.refreshToken
       });
 
-      gmailClients[doc._id].onNewEmail('"google i/o"', function (message) {
-        console.log(message.snippet);
+      gmailClients[doc._id].onNewEmail('to:meteor-talk@googlegroups.com', function (message) {
+        fs = Npm.require('fs')
+        fs.writeFileSync('/Users/imslavko/a.txt', JSON.stringify(message, null, 2));
+        process.exit(0)
       });
     }
   });
