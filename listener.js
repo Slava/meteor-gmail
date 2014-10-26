@@ -11,7 +11,9 @@ GMail.Listener = function (client, query, startHistoryId, cb) {
 GMail.Listener.prototype.fetchInitBatch = function () {
   var self = this;
   var messages = self.client.list(self.query);
-  _.each(messages, _.bind(self.handleNewMessage, self));
+  _.each(messages, function (message) {
+    self.handleNewMessage(message, message.historyId);
+  });
 
   if (! self.startHistoryId && messages.length)
     self.startHistoryId = messages[messages.length - 1].historyId;
@@ -19,11 +21,11 @@ GMail.Listener.prototype.fetchInitBatch = function () {
 
 GMail.Listener.prototype.handleNewMessage = function (doc, historyId) {
   var self = this;
-  if (historyId <= self.startHistoryId)
+  if (historyId && historyId <= self.startHistoryId)
     return;
 
   var message = new GMail.Message(doc);
-  if (! self.matcher.matches(doc)) return;
+  if (! self.matcher.matches(message)) return;
 
   self.callback(message, historyId, doc);
 };

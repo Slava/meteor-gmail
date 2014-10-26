@@ -31,7 +31,7 @@ GMail.Poller.prototype.performPoll = function () {
 
   var history = [];
   try {
-    if (self.startHistoryId === '0')
+    if (! self.startHistoryId || self.startHistoryId === '0')
       throw new Error('no startHistoryId');
     self.client.history(self.startHistoryId);
   } catch (err) {
@@ -41,6 +41,10 @@ GMail.Poller.prototype.performPoll = function () {
       var someMessages = self.client.list("", { maxResults: 1, limit: 1 });
       self.startHistoryId =
         self.client.get(someMessages[someMessages.length - 1].id).historyId;
+    } else if (err.message.match(/502/)) {
+      // Server refused to reply to us, retry later
+      // return true to indicate that we want to retry sooner
+      return true;
     } else {
       throw err;
     }
