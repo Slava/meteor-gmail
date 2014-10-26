@@ -33,7 +33,7 @@ GMail.Poller.prototype.performPoll = function () {
   try {
     if (! self.startHistoryId || self.startHistoryId === '0')
       throw new Error('no startHistoryId');
-    self.client.history(self.startHistoryId);
+    history = self.client.history(self.startHistoryId);
   } catch (err) {
     if (err.message.match(/404/) || err.message.match(/no startHistoryId/)) {
       // The last entry was so old or we never had an initial entry to start
