@@ -1,6 +1,6 @@
 Package.describe({
   summary: "Simplest GMail API with real-time observation.",
-  version: "0.0.1",
+  version: "0.1.0",
   git: "https://github.com/slava/meteor-gmail",
   name: "slava:gmail"
 });
