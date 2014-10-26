@@ -2,11 +2,11 @@
   "dependencies": [
     [
       "http",
-      "1.0.6"
+      "1.0.8-rc.5"
     ],
     [
       "meteor",
-      "1.1.1"
+      "1.1.3-rc.0"
     ],
     [
       "slava:gmail-query-parser",
@@ -14,14 +14,14 @@
     ],
     [
       "underscore",
-      "1.0.0"
+      "1.0.1"
     ],
     [
       "url",
-      "1.0.0"
+      "1.0.2-rc.0"
     ]
   ],
   "pluginDependencies": [],
-  "toolVersion": "meteor-tool@1.0.33",
+  "toolVersion": "meteor-tool@1.0.35-rc.11",
   "format": "1.0"
 }

@@ -46,6 +46,17 @@ GMail.Client = function (credentials) {
  */
 GMail.Client.prototype.onNewEmail = function (query, startHistoryId, cb) {
   var self = this;
+  self.onNewEmailRaw(query, startHistoryId, function (message) {
+    cb(new GMail.Message(message));
+  });
+};
+
+/**
+ * @summary same as onNewEmail but the callback is called with the raw object
+ * instead of a parsed instance of `GMail.Message`.
+ */
+GMail.Client.prototype.onNewEmailRaw = function (query, startHistoryId, cb) {
+  var self = this;
   // 'starthistoryid' is optional
   if (typeof startHistoryId === 'function') {
     cb = startHistoryId;
@@ -149,9 +160,12 @@ GMail.Client.prototype.list = Meteor.wrapAsync(function (query, params, cb) {
 
   var urlBase = "https://www.googleapis.com/gmail/v1/users/me/messages";
 
-  var transform = function (page) {
+  var transform = function (page, length) {
+    var messages = length === -1 ?
+      page.messages : page.messages.slice(0, length);
+
     // run fetches for all messages in parallel
-    var futures = _.map(page.messages, function (message) {
+    var futures = _.map(messages, function (message) {
       var f = new Future;
       self.get(message.id, f.resolver());
       return f;
@@ -171,8 +185,10 @@ GMail.Client.prototype.history = Meteor.wrapAsync(function (id, cb) {
 
   var urlBase = "https://www.googleapis.com/gmail/v1/users/me/history";
 
-  var transform = function (page) {
-    return page.history;
+  var transform = function (page, length) {
+    if (length === -1)
+      return page.history;
+    return page.history.slice(0, length);
   };
 
   self._accum(urlBase, transform, { startHistoryId: id }, cb);
@@ -186,6 +202,13 @@ GMail.Client.prototype._accum =
   // start w/o page token, i.e. first page
   var pageToken = "";
   var items = [];
+  var left = -1;
+
+  extraParams = _.clone(extraParams);
+  if (extraParams && extraParams.limit) {
+    left = extraParams.limit;
+    delete extraParams.limit;
+  }
 
   while (pageToken !== null) {
     try {
@@ -197,8 +220,17 @@ GMail.Client.prototype._accum =
       }, extraParams) });
 
       pageToken = r.data.nextPageToken || null;
+
+      var newItems = transform(r.data, left);
+      if (left !== -1)
+        left -= newItems.length;
+
       // save the results into messages
-      [].push.apply(items, transform(r.data));
+      [].push.apply(items, newItems);
+
+      // fetched the needed amount of items
+      if (! left)
+        break;
     } catch (err) {
       cb(err);
       return;

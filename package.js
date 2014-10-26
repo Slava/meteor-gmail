@@ -14,7 +14,8 @@ Package.onUse(function(api) {
     'gmail.js',
     'poller.js',
     'listener.js',
-    'message.js'], 'server');
+    'message.js',
+    'decoders.js'], 'server');
 
   api.export('GMail');
 });

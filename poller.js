@@ -31,13 +31,16 @@ GMail.Poller.prototype.performPoll = function () {
 
   var history = [];
   try {
+    if (self.startHistoryId === '0')
+      throw new Error('no startHistoryId');
     self.client.history(self.startHistoryId);
   } catch (err) {
-    if (err.message.match(/404/)) {
-      // The last entry was so old, we better start from the most recent
-      var someMessages = self.client.list("", { maxResults: 1 });
-      self.historyId =
-        self.client.get(someMessages[someMessages.length - 1]).historyId;
+    if (err.message.match(/404/) || err.message.match(/no startHistoryId/)) {
+      // The last entry was so old or we never had an initial entry to start
+      // with, we better start from the most recent
+      var someMessages = self.client.list("", { maxResults: 1, limit: 1 });
+      self.startHistoryId =
+        self.client.get(someMessages[someMessages.length - 1].id).historyId;
     } else {
       throw err;
     }

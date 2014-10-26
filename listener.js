@@ -2,7 +2,7 @@ GMail.Listener = function (client, query, startHistoryId, cb) {
   this.client = client;
   this.query = query;
   this.matcher = new GMailQuery.Matcher(query);
-  this.startHistoryId = startHistoryId || 0;
+  this.startHistoryId = startHistoryId || null;
   this.callback = cb;
 
   this.fetchInitBatch();

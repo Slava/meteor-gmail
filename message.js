@@ -52,25 +52,3 @@ var messageFromPayload = function (payload, mimeType) {
   }
 };
 
-var decodeBase64 = function (data) {
-  return new Buffer(data, 'base64').toString('utf8');
-};
-
-var htmlDecode = function (str) {
-  return str.replace(/&(#?[\w\d]+);?/g, function(s, entity) {
-    var chr;
-    if (entity.charAt(0) === "#") {
-      var code = entity.charAt(1).toLowerCase() === 'x' ?
-        parseInt(entity.substr(2), 16) :
-        parseInt(entity.substr(1));
-
-      if (!(isNaN(code) || code < -32768 || code > 65535)) {
-        chr = String.fromCharCode(code);
-      }
-    } else {
-      chr = alphaIndex[entity];
-    }
-    return chr || s;
-  });
-};
-
