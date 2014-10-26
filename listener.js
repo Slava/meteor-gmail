@@ -11,6 +11,7 @@ GMail.Listener = function (client, query, startHistoryId, cb) {
 GMail.Listener.prototype.fetchInitBatch = function () {
   var self = this;
   var messages = self.client.list(self.query);
+  messages.reverse();
   _.each(messages, function (message) {
     self.handleNewMessage(message, message.historyId);
   });

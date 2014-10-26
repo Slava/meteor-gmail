@@ -65,31 +65,39 @@ GMail.Poller.prototype.performPoll = function () {
 
   // Poll again later if still alive
   if (self.alive)
-    Meteor.setTimeout(_.bind(self.performPoll, self), self.pollInterval);
+    Meteor.setTimeout(function () {
+      self._resetPollInterval(self.performPoll());
+    }, self.pollInterval);
 
   // Did we process at least one history item?
   return !! history.length;
 };
 
 GMail.Poller.prototype.startPolling = function () {
-  this.alive = true;
-  this.pollInterval = Math.floor(this.pollInterval / 2);
-  var firstPoll = this.performPoll();
+  var self = this;
+  self.alive = true;
+  self.pollInterval = Math.floor(self.pollInterval / 2);
+  var firstPoll = self.performPoll();
+  self._resetPollInterval(firstPoll);
+};
 
-  if (firstPoll)
-    this.pollInterval = INIT_POLL_INTERVAL;
+GMail.Poller.prototype._resetPollInterval = function (hadUpdates) {
+  var self = this;
+
+  if (hadUpdates)
+    self.pollInterval = INIT_POLL_INTERVAL;
   else {
     // if it fell beyond the threshold put it to init value
     // grow the interval slowly in the beginning
     // but then grow it faster if anything happens for a while
-    if (this.pollInterval < INIT_POLL_INTERVAL)
-      this.pollInterval = INIT_POLL_INTERVAL;
-    else if (this.pollInterval < 60 * INIT_POLL_INTERVAL)
-      this.pollInterval += INIT_POLL_INTERVAL;
+    if (self.pollInterval < INIT_POLL_INTERVAL)
+      self.pollInterval = INIT_POLL_INTERVAL;
+    else if (self.pollInterval < 60 * INIT_POLL_INTERVAL)
+      self.pollInterval += INIT_POLL_INTERVAL;
     else
-      this.pollInterval += 60 * INIT_POLL_INTERVAL;
+      self.pollInterval += 60 * INIT_POLL_INTERVAL;
 
-    this.pollInterval = Math.min(this.pollInterval, MAX_POLL_INTERVAL);
+    self.pollInterval = Math.min(self.pollInterval, MAX_POLL_INTERVAL);
   }
 };
 
