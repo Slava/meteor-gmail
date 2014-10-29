@@ -103,12 +103,6 @@ it will retry in 2 seconds, 3, 4, 5 and so on up to 60. Then it will retry in 2
 minutes, 3, 4, 5 and so on. If something new is found, the timeout is back to 1
 second.
 
-## Known issues
-
-- Right now `onNewEmail` can return new messages even if they don't match the
-  query. This will be implemented with a JS implementation of the GMail query
-  language (which is not that hard).
-
 ## Contributions
 
 They are welcome.
