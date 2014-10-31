@@ -103,6 +103,10 @@ it will retry in 2 seconds, 3, 4, 5 and so on up to 60. Then it will retry in 2
 minutes, 3, 4, 5 and so on. If something new is found, the timeout is back to 1
 second.
 
+This package is polling only for the History API and not for every query
+individually. Such polling has smaller network footprint and doesn't require
+any diffing of results on site (no extra memory stored).
+
 ## Contributions
 
 They are welcome.
