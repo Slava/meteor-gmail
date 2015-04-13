@@ -77,6 +77,28 @@ Get an individual message by id:
 console.log(client.get("13991912923").snippet);
 ```
 
+Create a parsed Message object:
+
+```javascript
+var rawMessage = client.get("13991912923");
+var parsedMessage = new GMail.Message(rawMessage);
+console.log(parsedMessage.html);
+```
+
+Properties of parsed Messages: 
+- _historyId
+- _id
+- _threadId
+- bcc
+- cc
+- date
+- from
+- html
+- snippet
+- subject
+- text
+- to
+
 Get all new messages for query starting from 1995:
 
 ```javascript
